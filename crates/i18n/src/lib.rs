@@ -20,6 +20,7 @@ use std::sync::atomic::{AtomicU8, Ordering};
 pub enum Lang {
     English,
     Russian,
+    SChinese,
 }
 
 impl Lang {
@@ -29,6 +30,7 @@ impl Lang {
         match self {
             Lang::English => "en",
             Lang::Russian => "ru",
+            Lang::SChinese => "zh_cn",
         }
     }
     /// The language's own name.
@@ -36,6 +38,7 @@ impl Lang {
         match self {
             Lang::English => "English",
             Lang::Russian => "Русский",
+            Lang::SChinese => "简体中文",
         }
     }
     /// Name Steam's store API expects (`l=` parameter).
@@ -43,6 +46,7 @@ impl Lang {
         match self {
             Lang::English => "english",
             Lang::Russian => "russian",
+            Lang::Schinese => "schinese",
         }
     }
     pub fn from_code(code: &str) -> Option<Lang> {
@@ -63,6 +67,7 @@ pub fn set_language(lang: Lang) {
 pub fn language() -> Lang {
     match CURRENT.load(Ordering::Relaxed) {
         1 => Lang::Russian,
+        2 => Lang::Schinese,
         _ => Lang::English,
     }
 }
@@ -72,6 +77,7 @@ fn table(lang: Lang) -> Option<&'static HashMap<String, &'static str>> {
     match lang {
         Lang::English => None,
         Lang::Russian => Some(RU.get_or_init(|| load(include_str!("../locales/ru.toml")))),
+        Lang::Schinese => Some(ZH_CN.get_or_init(|| load(include_str!("../locales/zh_cn.toml"))))
     }
 }
 
