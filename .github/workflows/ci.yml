@@ -10,6 +10,7 @@ on:
 # picks the same GNU toolchain explicitly (it takes priority over the file).
 env:
   RUSTUP_TOOLCHAIN: stable-x86_64-pc-windows-gnu
+  CARGO_TERM_COLOR: always
 
 jobs:
   # PR titles become changelog lines and decide the next version
