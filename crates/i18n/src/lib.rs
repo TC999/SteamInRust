@@ -46,7 +46,7 @@ impl Lang {
         match self {
             Lang::English => "english",
             Lang::Russian => "russian",
-            Lang::Schinese => "schinese",
+            Lang::SChinese => "schinese",
         }
     }
     pub fn from_code(code: &str) -> Option<Lang> {
@@ -67,17 +67,18 @@ pub fn set_language(lang: Lang) {
 pub fn language() -> Lang {
     match CURRENT.load(Ordering::Relaxed) {
         1 => Lang::Russian,
-        2 => Lang::Schinese,
+        2 => Lang::SChinese,
         _ => Lang::English,
     }
 }
 
 fn table(lang: Lang) -> Option<&'static HashMap<String, &'static str>> {
     static RU: OnceLock<HashMap<String, &'static str>> = OnceLock::new();
+    static ZH_CN: OnceLock<HashMap<String, &'static str>> = OnceLock::new();
     match lang {
         Lang::English => None,
         Lang::Russian => Some(RU.get_or_init(|| load(include_str!("../locales/ru.toml")))),
-        Lang::Schinese => Some(ZH_CN.get_or_init(|| load(include_str!("../locales/zh_cn.toml"))))
+        Lang::SChinese => Some(ZH_CN.get_or_init(|| load(include_str!("../locales/zh_cn.toml"))))
     }
 }
 
