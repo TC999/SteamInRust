@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.5.1](https://github.com/TC999/SteamInRust/compare/v0.5.0...v0.5.1) (2026-11-14)
+
+
+### Translations
+
+* add Simplfied Chinese ([cb1ab77](https://github.com/TC999/SteamInRust/commit/cb1ab775e8c6dfb332f809db1275ee0be082e0f3))
+
 ## [0.5.0](https://github.com/madonchik123/SteamInRust/compare/v0.4.1...v0.5.0) (2026-11-10)
 
 
